@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color:#424242;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            background-color:#1c2c72;
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            display: flex;
+            height: 95vh;
+            width: 97vw;
+            /* max-width: 1200px; */
+            background-color: #fcfdff;
+            border-radius: 5px;
+            box-shadow: 2px 3px 4px 3px #424242;
+            overflow: hidden;
+        }
+
+        .sideBar {
+            height: 100%;
+            width: 25%;
+            background-color: #f5f6fb;
+            color: #0a0a0a;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .learn {
+            display: flex;
+            align-items: center;
+            justify-content:center;
+        }
+
+        .learn div { 
+            height: 7rem;
+            width: 25rem;
+            background-image: url("https://i.imghippo.com/files/PICE7791BEo.png");
+            background-size:cover;
+            
+        } 
+
+        .opctions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .opctions div {
+            width: 100%;
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .opctions div:hover {
+            background-color: #6880ed;
+            width:100%;
+        }
+
+        .opctions div i {
+            margin-right: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: #090101;
+            font-weight: 600;
+            display: block;
+            width: 100%;
+        }
+
+        .last {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .dashBoard {
+            width: 80%;
+            height: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        nav {
+            height: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            background-color: #1b1be6;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px #fcfbfb;
+        }
+
+        nav h1 {
+            font-size: 1.8rem;
+        }
+
+        nav .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .profile .image {
+            width: 50px;
+            height: 50px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        nav .profile .image img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        nav .profile .content h3 {
+            margin-bottom: 0.2rem;
+        }
+
+        .chart-container {
+            width: 100%;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+
+        .chart-container.canvas-bar{
+            width: 60%;
+            max-width: 600px;
+            margin: auto;
+
+        }
+        .chart-container.canvas-pie {
+            width: 40%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .chart-container canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .progress-bar {
+            height: 20px;
+            width: 80%;
+            background-color: #fcfdff;
+            border-radius: 5px;
+            margin: 10px auto;
+            border: 1px solid black;
+            position: relative;
+        }
+
+        .progress-bar span {
+            display: block;
+            height: 100%;
+            width: 0;
+            background-color: #fcfdff;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            line-height: 20px; /* Center text vertically */
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .mainImg {
+            flex-grow: 1;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .mainImg img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 2px 3px 4px 1px #EAD8B1;
+        }
+
+        .month-selector {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .month-selector label {
+            margin-right: 10px;
+        }
+
+        .month-selector select {
+            font-size: 1rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        @media screen and (max-width: 768px) {
+            main {
+                flex-direction: column;
+                height: auto;
+                width: 100%;
+            }
+
+            .sideBar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 0.5rem;
+            }
+
+            .learn, .last {
+                display: none;
+            }
+
+            .opctions {
+                flex-direction: row;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                padding: 0.5rem;
+            }
+
+            .opctions div {
+                font-size: 1rem;
+                margin: 0.2rem;
+                padding: 0.3rem;
+            }
+
+            .dashBoard {
+                width: 100%;
+                padding: 1rem;
+            }
+
+            nav h1 {
+                font-size: 1.5rem;
+            }
+
+            nav .profile .image i {
+                font-size: 1.5rem;
+            }
+
+            nav .profile {
+                justify-content: flex-end;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            nav h1 {
+                font-size: 1.2rem;
+            }
+
+            .opctions div {
+                font-size: 0.9rem;
+            }
+        }
+        
+        .carousel-container {
+            width: auto;
+            height:auto;
+            overflow: hidden;
+            position: relative;
+            background-color: #fbfaf8;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+
+        .carousel img {
+            width: 200%;
+            max-width: 400px;
+            height: auto;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 10px;
+        }
+
+        .carousel-container:hover .carousel{
+            animation: scroll 30s linear infinite;
+        }
+
+        
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .scroll {
+            display:flex;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: #1b1be6;
+    padding: 10px;
+    border: 1px solid #ccc;
+    flex-direction:row;
+    color:#424242;
+
+}
+
+.scroll h3 {
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+.ticker {
+    color:#fbfafa;
+    display: inline-block;
+    animation: scrollLeft 15s linear infinite;
+
+
+}
+
+.ticker span {
+    display: inline-block;
+    /* padding-left: 100%; Start off-screen */
+    color:#fbfafa;
+}
+.news{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+/* Animation keyframes */
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+        
+    </style>
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="sideBar">
+            <div class="learn">
+                <div>
+                   
+                </div>
+            </div>
+
+            <div class="opctions">
+                <div>
+                    <i class="fa-regular fa-comments"></i>
+                    <a href="/chatbot">ChatBot</a>
+                </div>
+                <!-- <div>
+                    <i class="fa-solid fa-arrow-up-right-dots"></i>
+                    <a href="/domain">Investements</a>
+                </div> -->
+                <div>
+                    <i class="fa-solid fa-coins"></i>
+                    <a href="/IChecker">safety Investement Checker</a>
+                </div>
+                <!-- <div>
+                    <i class="fa-solid fa-book"></i>
+                    <a href="/select_semister">Schemes</a>
+                </div> -->
+
+                <div>
+                    <i class="fa-solid fa-chevron-up"></i>
+                    <a href="/Subs">Top facilities</a>
+                </div>
+
+                <div>
+                    <i class="fa-regular fa-bell"></i>
+                    <a href="/bill">Bill Remainder</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-bank"></i>
+                    <a href="/TopBanks">Top Banks</a>
+                </div>
+                <div>
+                    <i class="fas fa-money-bill"></i>
+                    <a href="/LoanEligibility">Loan Eligibility checker</a>
+                </div>
+
+                <div>
+                    <i class="fas fa-piggy-bank"></i>
+                    <a href="/Loans">Loans</a>
+                </div>
+<!--                 
+                <div>
+                    <i class="fa fa-language"></i>
+                    <a href="/lang">Language Support</a>
+                </div> -->
+
+                <div>
+                    <i class="fa fa-gamepad"></i>
+                    <a href="/Quiz">Quizz</a>
+                </div>
+                <!-- <div>
+                    <i class="fa-regular fa-window-maximize"></i>
+                    <a href="/compiling">Deposits</a>
+                </div> -->
+
+                <div>
+                    <i class="fas fa-sms"></i>
+                    <a href="/SMSFraudReport">SMS Fraud Report or Checker</a>
+                </div>
+
+
+                <DIV>
+                    <i class="fa-duotone fa-solid fa-location-dot"></i>
+                    <a href="/NearbyBanks">Nearby Banks</a>
+                </DIV>
+                <DIV>
+                    <i class="fa-duotone fa-solid fa-handshake"></i>
+                    <a href="/support">Support</a>
+                </DIV>
+                 
+            </div>
+
+            <div class="last">
+                <div>
+                    <a href="/logout">Logout</a>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashBoard">
+            <nav>
+                <h1 style="color: #fcfbfb;">Dashboard</h1>
+                <div class="profile">
+                    <div class="image">
+                        <img src="https://i.ibb.co/HrBTv45/IMG-20240830-WA0017-1.jpg" alt="Profile Picture">
+                    </div>
+                    <div class="content">
+                        <!-- Replace with actual user data -->
+                        {% if user %}
+                        <h3> {{ user[1] }}</h3>
+                        <p>{{ user[2] }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+            <br>
+            <div class ="carousel-container">
+                <div class="carousel">
+                <img src="https://static.toiimg.com/thumb/msid-108016440,width-400,resizemode-4/108016440.jpg">
+                <img src="https://www.livemint.com/lm-img/img/2024/11/11/600x338/SBI_fake_warning_Twitter_November_11_2024_1731308543049_1731308555002.jfif">
+                <img src="https://pbs.twimg.com/media/FDRy3lrVQAEnIns.jpg:large">
+                <img src="https://qentelli.com/sites/default/files/2024-01/ai-powered-fraud-detection-in-banking-industry.png">
+                <img src="https://www.ameyo.com/wp-content/uploads/2022/02/Chatbot-for-Banking-Featured-image.png">
+                <img src="https://www.researchgate.net/publication/326127756/figure/tbl2/AS:797239077269505@1567088016686/Estimated-Loss-of-Lic-on-Account-of-the-Pnb-Scam.png">
+            
+            </div>
+            
+            <div class="scroll">
+                <div>
+                <h3 style="color: white;">>> Breaking News</h3>
+                </div>
+                <div class="ticker">
+                    <span>🚨Breaking News: Major Bank Related frauds! Stay tuned for updates. 🚨Insider Data Leaks in Banks . 🚨 Bank Fraud Cases Surge in India. 🚨 Bank Manager Arrested for Data Theft and Fraud. 🚨 ICICI Bank-Videocon Loan Fraud Case. </span>
+                </div>
+            </div> 
+            <br>
+            <div class="news">
+                <h4>HeadLines</h4>
+                <pre>
+                    <h2>🚨Insider Data Leaks in Banks</h2>
+📌A recent report reveals that low-paid bank employees have been selling client data to online scammers,
+exposing a critical security vulnerability within financial institutions. Despite previous warnings, 
+insider data leaks have surged, leading to an increase in elder fraud complaints. For instance, 
+a Toronto-Dominion Bank employee leaked customer information via Telegram, and a Navy Federal 
+Credit Union staffer sold customer data.
+                </pre>
+                <br>
+                <pre>
+                    <h2>🚨 Bank Fraud Cases Surge in India</h2>
+📌 The Reserve Bank of India (RBI) reports a significant increase in bank frauds during the first half 
+of the fiscal year 2024-25. Between April and September, 18,461 fraud cases were reported, involving a
+ total of ₹21,367 crore. This marks a substantial rise compared to the same period in the previous year,
+which saw 14,480 cases amounting to ₹2,623 crore.
+                </pre>
+                <br>
+                <pre>
+                    <h2>🚨 Bank Manager Arrested for Data Theft and Fraud</h2>
+📌 In December 2024, a bank manager was arrested for allegedly stealing data and defrauding a company of
+ ₹12.51 crore. The manager, along with accomplices, accessed confidential customer information to execute
+  unauthorized transactions, highlighting serious lapses in internal security measures within the bank.        
+                </pre>
+                <br>
+                <pre>
+                    <h2>🚨 ICICI Bank-Videocon Loan Fraud Case</h2>
+📌 The ICICI Bank-Videocon loan scam involves allegations against former ICICI Bank CEO Chanda Kochhar,
+  who is accused of sanctioning loans to Videocon Group companies in exchange for personal benefits.
+  Investigations revealed that between 2009 and 2011, ICICI Bank sanctioned six high-value loans to
+  Videocon Group, which later became non-performing assets, causing significant financial losses.
+  In December 2022, Chanda Kochhar, her husband Deepak Kochhar, and Videocon's Venugopal Dhoot were
+  arrested in connection with the case. 
+                </pre>
+            </div>
+        </div>
+            
+            
+    </main>
+
+    <script>
+    const carousel = document.querySelector('.carousel');
+    const images = document.querySelectorAll('.carousel img');
+    const totalImages = images.length;
+    const dotsContainer = document.querySelector('.dots-container');
+
+    // Clone the images to make the carousel loop seamlessly
+    function cloneImages() {
+        for (let i = 0; i < totalImages; i++) {
+            const clone = images[i].cloneNode(true);
+            carousel.appendChild(clone);
+        }
+    }
+
+    // Initialize the cloned images
+    cloneImages();
+
+    // Create dots dynamically based on the number of images
+    function createDots() {
+        for (let i = 0; i < totalImages; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.addEventListener('click', () => moveToImage(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    // Move carousel to specific image based on dot click
+    function moveToImage(index) {
+        const imageWidth = images[0].clientWidth + 10; // width of each image + margin-right
+        carousel.style.transition = 'transform 1s ease-in-out';
+        carousel.style.transform = `translateX(-${index * imageWidth}px)`; // Move left by image index
+
+        updateActiveDot(index);
+    }
+
+    // Update the active dot
+    function updateActiveDot(index) {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, i) => {
+            dot.classList.remove('active');
+            if (i === index) {
+                dot.classList.add('active');
+            }
+        });
+    }
+
+    // Function to move the carousel images
+    function startCarousel() {
+        let currentIndex = 0;
+        setInterval(() => {
+            const imageWidth = images[0].clientWidth + 10; // width of each image + margin-right
+            currentIndex = (currentIndex + 1) % totalImages;
+            carousel.style.transition = 'transform 1s ease-in-out';
+            carousel.style.transform = `translateX(-${currentIndex * imageWidth}px)`; // Move left by one image width
+
+            updateActiveDot(currentIndex);
+        }, 3000); // Interval for moving the images
+    }
+
+    // Initialize dots and start the carousel
+    createDots();
+    startCarousel();
+    </script>
+
+
+</body>
+
+</html>

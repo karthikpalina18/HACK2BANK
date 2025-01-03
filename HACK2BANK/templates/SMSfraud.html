@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HacktoBank - SMS Fraud Detection</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+        .alert {
+            border: 2px solid red;
+            background-color: #f9d6d6;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button.red {
+            background-color: red;
+        }
+        .container{
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #logo{
+            margin-left:36%;
+            height: 7rem;
+            width: 25rem;
+            background-image: url("https://i.imghippo.com/files/PICE7791BEo.png");
+            background-size:cover;
+            display:flex;
+            justify-items: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id = logo ></div>
+    <div class="container">
+    <h1>HacktoBank - SMS Fraud Detection</h1>
+    <p>Enter an SMS message below to check for potential fraud:</p>
+    
+    <textarea id="smsInput" rows="4" cols="50" placeholder="Enter SMS text here..."></textarea>
+    <br><br>
+    <button class="button" onclick="checkSMS()">Scan SMS</button>
+
+    <div id="alert" class="alert">
+        <h3>🚨 Fraud Alert!</h3>
+        <p id="alertMessage"></p>
+        <a href="#" class="button red" onclick="reportToBank()">Report to Bank</a>
+        <a href="#" class="button" onclick="learnMore()">Learn More</a>
+    </div>
+    </div>
+
+    <script>
+        const suspiciousKeywords = ["account is locked", "click here", "unlock", "urgent"];
+
+        function checkSMS() {
+            const smsText = document.getElementById("smsInput").value.toLowerCase();
+            const alertDiv = document.getElementById("alert");
+            const alertMessage = document.getElementById("alertMessage");
+            
+            let isSuspicious = suspiciousKeywords.some(keyword => smsText.includes(keyword));
+
+            if (isSuspicious) {
+                alertMessage.innerText = "This message appears to be fraudulent. Do not click any links!";
+                alertDiv.style.display = "block";
+                playAudioAlert();
+            } else {
+                alertMessage.innerText = "This message seems safe.";
+                alertDiv.style.display = "block";
+            }
+        }
+
+        function playAudioAlert() {
+            const audio = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
+            audio.play();
+        }
+
+        function reportToBank() {
+            alert("The message has been reported to the bank. Thank you!");
+        }
+
+        function learnMore() {
+            alert("Fraudulent messages often contain urgent language and suspicious links. Be cautious!");
+        }
+    </script>
+</body>
+</html>

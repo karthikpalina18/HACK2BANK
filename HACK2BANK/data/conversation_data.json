@@ -1,0 +1,108 @@
+{
+    "hi": {
+        "response": "Hello! How can I asisst you?",
+        "options": ["Fraud Detection", "Loans", "Investments", "Credit Cards", "Debit cards cheque books", "KYC", "Debit Card EMI"]
+    },
+    "loans": {
+        "response": "Select the type of loan you are applying for.",
+        "options": [
+            "Personal Loan",
+            "Home Loan",
+            "Gold Loan",
+            "Vehicle Loan",
+            "Education Loan",
+            "Business Loan",
+            "Loan against properties",
+            "Credit Card Loan",
+            "Overdraft Facility",
+            "Agriculture Loan"
+        ]
+    },
+    "personal loan": {
+        "response": "Age 21 to 60 years (varies by bank) Employment Salaried or self-employed Minimum income Depends on bank and loan amount Credit score Generally 650 or higher. Documents Needed Identity Proof: Passport, Aadhaar card, voter ID, PAN card. Address Proof Utility bills, rent agreement, Aadhaar or passport. Income Proof Salary slips (last 3 to 6 months), Form 16, or IT returns for self-employed.Bank Statements Last 3 to 6 months.",
+    "options": ["Hi", "Bye"]
+    },
+    "home loan": {
+        "response": "Age: 18 to 70 years.\nStable income source.\nGood credit history.\nProperty-related documents.\n\nDocuments Needed:\n- Identity Proof: PAN, Aadhaar, or passport.\n- Address Proof: Electricity bill, water bill, passport.\n- Income Proof:\n  - Salaried: Salary slips, Form 16, bank statements (last 6 months).\n  - Self-employed: IT returns, profit & loss statements, business proof.\n- Property Documents: Sale agreement, property registration papers, and title deed.\n- Others: Processing fee cheque.",
+        "options": ["Hi", "Bye"]
+    },
+    "vehicle loan": {
+        "response": "Age: 21 to 65 years.\nStable income or business.\nGood credit score.\n\nDocuments Needed:\n- Identity Proof: Passport, Aadhaar, voter ID.\n- Address Proof: Utility bills, rent agreement, passport.\n- Income Proof: Salary slips, IT returns, or business financials.\n- Bank Statements: Last 3 to 6 months.\n- Vehicle Details: Quotation or invoice from the dealer.",
+        "options": ["Hi", "Bye"]
+    },
+    "education loan": {
+        "response": "Requirements:\n- Confirmed admission to a recognized institution.\n- Guarantor or co-signer (parent/guardian).\n\nDocuments Needed:\n- Identity Proof: Aadhaar, passport, voter ID.\n- Address Proof: Utility bill, rent agreement, or Aadhaar.\n- Academic Documents: Admission letter, fee structure, previous marksheets.\n- Income Proof: Salary slips, IT returns of the guarantor/co-signer.\n- Bank Statements: Last 6 months.",
+        "options": ["Hi", "Bye"]
+    },
+    "business loan": {
+        "response": "Requirements:\n- Minimum business vintage (usually 2 to 3 years).\n- Stable income and turnover.\n- Good credit history.\n\nDocuments Needed:\n- Business Proof: Registration certificate, GST certificate, trade license.\n- Financial Documents: IT returns, audited financials (P&L statements, balance sheet).\n- Bank Statements: Last 6 to 12 months.\n- KYC Documents: Identity and address proof of the business owner.",
+        "options": ["Hi", "Bye"]
+    },
+    "gold loan": {
+        "response": "Requirements:\n- Ownership of gold (specific purity standards).\n- Age: 18 to 70 years.\n\nDocuments Needed:\n- Identity Proof: Aadhaar, passport, PAN card.\n- Address Proof: Electricity bill, Aadhaar, voter ID.\n- Gold Proof: Not required in most cases.",
+        "options": ["Hi", "Bye"]
+    },
+    "loan against properties": {
+        "response": "Requirements:\n- Age: 21 to 70 years.\n- Ownership of residential or commercial property.\n- Stable income source.\n\nDocuments Needed:\n- Property Documents: Title deed, valuation report, ownership proof.\n- Identity Proof: Aadhaar, PAN, passport.\n- Address Proof: Utility bills, Aadhaar, rent agreement.\n- Income Proof: Salary slips, IT returns, or audited financials.\n- Bank Statements: Last 6 to 12 months.",
+        "options": ["Hi", "Bye"]
+    },
+    "agriculture loan": {
+        "response": "Requirements:\n- Proof of land ownership or farming activity.\n- Agricultural plan or purpose of loan.\n\nDocuments Needed:\n- Land Documents: Title deed, land revenue receipts.\n- Identity Proof: Aadhaar, voter ID, or PAN card.\n- Address Proof: Electricity bill, Aadhaar.\n- Others: Crop plan, photographs, or guarantor details.",
+        "options": ["Hi", "Bye"]
+    },
+    "overdraft facility": {
+        "response": "Requirements:\n- Existing savings/current account with the bank.\n- Steady income source.\n\nDocuments Needed:\n- KYC Documents: Identity and address proof.\n- Bank Statements: Account activity proof (last 6 months).\n- Income Proof: Salary slips, IT returns.",
+        "options": ["Hi", "Bye"]
+    },
+    "credit card loan": {
+        "response": "Requirements:\n- Active credit card with good repayment history.\n- Pre-approved credit limit.\n\nDocuments Needed:\n- Usually, no additional documents are required as the loan is pre-approved.",
+        "options": ["Hi", "Bye"]
+    },
+    "credit cards" :{
+        "response":"Age:18 to 65 \n Minimum Income Based on Card Type(Bank),\n Credit Score 700 or above ,\n You can Apply on respective Banks Website or Offline \n Documents : Identity proof (Aadhar), Income Proof ,Bank Statements, passphoto sized photos",
+        "options":["Hi","Bye"]
+
+    },
+    "debit cards cheque books":{
+        "response":"Age:18\n Documents:Identity Proof(Aadhar),Photograph(pass photo size),\n Apply on offline or online ,\n For cheque books Eligibility: Must have savings, current or salary account with the bank ensure KYC compliant ",
+        "options" :["Hi","Bye"] 
+
+    },
+    "kyc":{
+        "response":"For Majors - Aadhar card , Mobile number linked with mobile , 2 or 3 photographs ,Bio metric verification\n For Minors : we need Guardian and Gurdian Identityproof with Aadhar and Relation proof\n For NRI :Valid passphoto,Visa,Overseas Address proof, Letter from Employee or Bank Statements",
+        "options":["Hi","Bye"]
+    },
+    "debit card emi":{
+        "response":"Age between 21 to 60 , Self Employeed , Minimum Salary 3-5LPA ,Credit score min 650 , Employement Salary, Existing debt according to the Bank \n Documents Required(While applying to EMI & eligible):Identity & Address proof , Income & employement proof If home Loan property Document will additional(It will differ according to the loan you take ), bank statements of last 3 months",
+        "options":["Hi","Bye"]
+    },
+    "investments":{
+        "response":"Identity & address proof, Passport sized photos , Account Details , Pancard , KYC Documents & Income (For Mutual funds, etc),Income proof& Medical proofs(For Insurance products like life , health , etc ) ,Age proof(Senior citizens Savings Scheme)",
+        "options":["Hi","Bye"]
+    },
+    
+    "bye": {
+        "response": "Goodbye! Have a nice day!",
+        "options": []
+    },
+    "fraud tips": {
+        "response": "Here are some fraud detection tips:\n\n1. Always verify the source of any financial offer.\n2. Be cautious when providing personal information online.\n3. Never click on suspicious links.\n4. Report any fraudulent activity immediately to your bank.\n\nFor further details, check official links.",
+        "options": ["Hi", "Bye"]
+    },
+    "official_links": [
+        "https://canarabank.com/", "https://canarabank.com/savings-bank-account", "https://canarabank.com/canara-current-account", "https://canarabank.com/pages/online-account-opening", "https://canarabank.com/housing-loan", "https://canarabank.com/canara-vehicle", "https://canarabank.com/vidya-turan", "https://canarabank.com/swarna-loan", "https://canarabank.com/insurance/index.html", 
+"https://www.indianbank.in/", "https://www.indianbank.in/investors-services-ib/", "https://www.indianbank.in/category/loans/agriculture/", "https://www.indianbank.in/departments/onlineloans/", "https://www.indianbank.in/departments/deposit-rates/", "https://www.indianbank.in/service-charges-forex-rates/", "https://www.indianbank.in/departments/credit-card/", 
+"https://bankofmaharashtra.in/", "https://bankofmaharashtra.in/contact-us", "https://bankofmaharashtra.in/careers", "https://digileads.bankofmaharashtra.in/homeloan?bom", "https://bomdigitalloans.bankofmaharashtra.in/gold-loan/#/gold-loan-signin?pri=bom", "https://bankofmaharashtra.in/calculators", "https://bankofmaharashtra.in/agricultures", "https://bankofmaharashtra.in/msme-large-credit", 
+"https://www.hdfcbank.com/", "https://netbanking.hdfcbank.com/netbanking/", "https://v.hdfcbank.com/htdocs/common/NetBanking/nbip-credit-cards/nbip-credit-card.html", "https://www.hdfcbank.com/personal/save/accounts/savings-accounts", "https://www.hdfcbank.com/personal/borrow/popular-loans#/educational-loans", "https://www.hdfcbank.com/personal/borrow/popular-loans/business-loan", "https://www.hdfcbank.com/personal/insure/life-insurance/protect-life-and-grow-wealth", "https://www.hdfcbank.com/personal/insure/health-and-accident-insurance#/mediclaim", 
+"https://www.axisbank.com/", "https://www.axisbank.com/about-us", "https://sparsh.axisbank.com/myrequests/my-form", "https://www.axisbank.com/business-banking/current-account/businessbanking-debit-cards", "https://www.axisbank.com/retail/loans/home-loan?cta=product-life-goal-card2", "https://www.axisbank.com/retail/calculators/home-loan-emi-calculator?cta=calculator-life-goal-card2", "https://www.axisbank.com/grab-deals/online-offers?cta=deal-interest-you", 
+"https://bank.indusind.com/pioneer-private/home.html", "https://www.indusind.com/in/en/personal.html?utm_source=Google_Organic_Search", "https://www.indusind.com/in/en/personal.html", "https://bank.indusind.com/pioneer/home.html", "https://www.indusind.com/in/en/nri.html", "https://www.indusind.com/in/en/business.html#", "https://www.indusind.com/in/en/business/loans/loan-against-card-receivables.html", 
+"https://www.yesbank.in/", "https://www.yesbank.in/personal-banking/yes-individual/loans/home-loan", "https://www.yesbank.in/business-banking/loans/commercial-vehicle-financing", "https://www.yesbank.in/business-banking/agri-and-food-business/agri-and-microfinance-loans", "https://www.yesbank.in/personal-banking/yes-individual/insurance/life-insurance", "https://www.yesbank.in/business-banking/agri-and-food-business/programmes/inclusive-and-social-banking", "https://www.yesbank.in/personal-banking/nri-banking/nri-accounts/savings-account/nre-savings-account", 
+"https://www.federalbank.co.in/", "https://www.federalbank.co.in/open-an-account", "https://www.federalbank.co.in/gold-loans", "https://www.federalbank.co.in/insurance-and-investments", "https://www.federalbank.co.in/housing-loan", "https://www.federalbank.co.in/fixed-deposit-calculator", "https://www.federalbank.co.in/life-insurance", 
+"https://bandhanbank.com/", "https://bandhanbank.com/personal/bill-payment-recharge", "https://bandhanbank.com/personal/home-loan", "https://bandhanbank.com/personal/loan/gold-loan", "https://bandhanbank.com/about-us", "https://bandhanbank.com/media-room", "https://bandhanbank.com/investor-relations", 
+"https://www.dcbbank.com/", "https://www.dcbbank.com/for-investor", "https://www.dcbbank.com/dcb-saving-account", "https://www.dcbbank.com/need-a-loan-business", "https://www.dcbbank.com/agriculture", "https://www.dcbbank.com/insurance-investment", "https://www.dcbbank.com/cards-offers", "https://www.dcbbank.com/trade-finance", 
+"https://www.hsbc.co.in/", "https://www.hsbc.co.in/investments/", "https://www.hsbc.co.in/insurance/", "https://www.hsbc.co.in/home-loans/", "https://www.hsbc.co.in/nri/", "https://www.hsbc.co.in/credit-cards/", "https://www.hsbc.co.in/accounts/products/global-private-banking/", 
+"https://www.sc.com/en/", "https://www.sc.com/en/about/innovation/sc-ventures/", "https://www.sc.com/en/contact-us/", "https://www.sc.com/en/corporate-investment-banking/financial-markets/credit-markets/", "https://www.sc.com/en/global-careers/business-areas/", "https://www.sc.com/en/investors/financial-results/subsidiaries-financial-results/", "https://s2b.sc.com/unifiedlogin/login/index.html#/login"
+
+    ]
+
+}

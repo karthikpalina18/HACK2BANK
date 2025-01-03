@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        * {
+            margin:0;
+            padding:0;
+            color:#424242;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #6880ed;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            height: 100vh;
+            width:100vw;
+            margin:0;
+        }
+        main {
+           
+           height:90vh;
+           width:90vw;
+           
+           display:flex;
+           justify-content:center;
+           align-items:center;
+           margin-top:2.5rem;
+           
+
+       }
+       .container2 {
+            background-image: url("https://media.istockphoto.com/id/1358824931/vector/isometric-data-security-system-cyber-security-and-privacy-traffic-encryption-vpn-privacy.jpg?s=612x612&w=0&k=20&c=fIJ2E0KmWRiaXIAtgvGA9qTiTeEMJejnk2Pm6M1nn0A=");
+            background-size:contain;
+            /* align-items: right;
+            padding: 100px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 2100%;
+            height:100vh;
+            max-width: 500px; */
+            height:100%;
+            width:50%;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+       .container {
+            display:flex;
+            justify-content:center;
+            flex-direction:column;
+            align-items: center;
+            background: #F5F5F5;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius:8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height:100%;
+            width: 50%;
+            
+            
+        }
+        
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group .errors {
+            color: red;
+            font-size: 0.875em;
+        }
+        .form-group .errors p {
+            margin: 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            background-color: #333;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
+        .btn-secondary {
+            background-color: #666;
+        }
+        .btn-secondary:hover {
+            background-color: #888;
+        }
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+        }
+
+        .container .logo {
+            height:25%;
+            width:78%;
+            margin-bottom:1rem;
+            margin-top:-5rem;
+        }
+
+        .container .logo img {
+            height:100%;
+            width:100%;
+        }
+
+        .container h2 {
+            font-size:4rem;
+        }
+
+        .form-group label {
+            font-size:1.5rem;
+        }
+        
+
+        button {
+            height:2.5rem;
+            width:5rem;
+            border-radius:50px;
+            background-color:#424242;
+            border:none;
+            color:whitesmoke;
+            font-weight:500;
+            margin-left:4rem;
+        }
+
+        button a {
+            color:whitesmoke;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        button:hover {
+            background-color:#48CFCB;
+            color:whitesmoke;
+        }
+
+        </style>
+</head>
+<body>
+    <main>
+    <!-- {% extends 'app.html' %} -->
+    <!-- {% block content %} -->
+    <div class="container2">
+      
+</div>
+
+    <div class="container">
+        <img src="https://i.imghippo.com/files/PICE7791BEo.png" width="400"/>
+    <h2>Register form</h2>
+    <form action="/register" method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+        {{ form.name.label(for="name")}}
+        {{ form.name(id="name", class="form-control")}}
+
+        {% if form.name.errors %}
+                <ul class="text-danger">
+                    {% for error in form.name.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+        </div>
+
+
+        <div class="form-group">
+            {{ form.email.label(for="email")}}
+            {{ form.email(id="email", class="form-control")}}
+    
+            {% if form.email.errors %}
+                <ul class="text-danger">
+                    {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            {{ form.password.label(for="password")}}
+            {{ form.password(id="password", class="form-control")}}
+
+            {% if form.password.errors %}
+                    <ul class="text-danger">
+                        {% for error in form.password.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+            {% endif %}
+        </div>
+        <!-- {{ form.submit(class="button")}}
+        <a href="/login" class="button">Login page</a> -->
+        <button class="btn-one" type="submit" >Register</button>
+        <button><a href="{{ url_for('login') }}">Login</a></button>
+    </form>
+    </div>
+    
+
+    {% endblock %}
+    </main>
+    
+</body>
+</html>

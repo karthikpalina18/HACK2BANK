@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    color: #424242;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background-color: #6880ed;
+}
+
+main {
+    margin: 1.5rem 4.5rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+a {
+    text-decoration: none;
+    color: #424242;
+}
+
+li {
+    list-style: none;
+}
+
+.load {
+    width: 100%;
+    height: 3px;
+    border: 1px solid black;
+}
+
+.box {
+    background-color: #F5F5F5;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.logo img {
+    width: 180%;
+    height: auto;
+    max-width: 200px;
+    mix-blend-mode: multiply;
+}
+
+.first ul {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.second ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.second ul button {
+    height: 2.2rem;
+    width: 6rem;
+    border-radius: 50px;
+    border: 1px solid #424242;
+    background-color: #F5F5F5;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+    color: #229799;
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+}
+
+.second ul button a:hover {
+    color:#6880ed;
+    text-decoration: none;
+}
+
+.second ul button:hover {
+    background-color: #48CFCB;
+}
+
+.mainPage {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.main-one {
+    width: 100%;
+    max-width: 45%;
+    text-align: center;
+}
+
+.main-one h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.main-one p {
+    opacity: 0.7;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.main-one p span {
+    color: #229799;
+}
+
+.mainPage button {
+    height: 2rem;
+    width: 8rem;
+    border-radius: 50px;
+    border: none;
+    background-color:#ec6928;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.mainPage button:hover {
+    background-color: #229799;
+}
+
+.main-two {
+    width: 100%;
+    max-width: 25rem;
+    height: 16rem;
+    background-image: url("https://ibb.co/jzGYC8d");
+    background-size: cover;
+    box-shadow: 1.3px 0 1.3px 0.9px;
+    border-radius: 5px;
+    margin-top: 2rem;
+}
+
+.last {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+    width: 100%;
+    gap: 1rem;
+}
+
+.last-one {
+    flex: 1;
+    margin: 1.5rem;
+    text-align: center;
+    min-width: 280px; /* Ensure it shows well on smaller screens */
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: #424242;
+    margin-bottom: 1rem;
+}
+
+.tech {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.tech button {
+    height: 2rem;
+    width: 6rem;
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    color: #F5F5F5;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.box1 {
+    margin-top:2rem;
+}
+.box3 .five {
+    margin-left:5rem;
+}
+
+.box1 .second {
+    margin-left:5rem;
+}
+
+.tech .green {
+    background-color: #48CFCB;
+}
+
+.tech .blue {
+    background-color: #424242;
+}
+
+.images {
+    
+    height:250px;
+    width:200px;
+    background-image: url("https://i.ibb.co/y5ggpZy/Whats-App-Image-2024-08-29-at-15-37-57-ac5729f5.jpg");
+    background-size: contain;
+    border-radius: 8px;
+    margin-top: 2rem;
+    min-width: 280px;
+    margin-right:5rem;
+}
+
+@media (max-width: 1024px) {
+    .last {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .last-one, .images {
+        margin: 1rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-one, .main-two, .last-one, .images {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .main-one h1 {
+        font-size: 2rem;
+    }
+
+    .main-one p {
+        font-size: 1rem;
+    }
+
+    .mainPage {
+        flex-direction: column;
+    }
+
+    .tech {
+        flex-direction: column;
+    }
+
+    .tech button {
+        width: 100%;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="load"></div>
+    <!-- {% extends 'app.html' %}
+    {% block content %} -->
+    
+
+    <main>
+        <div class="box">
+            <nav>
+                <div class="logo">
+                    <img src="https://i.imghippo.com/files/PICE7791BEo.png" alt="logo" height=30px width=100px>
+                </div>
+                <div class="first">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Categories </a> </li>
+                        <li><a href="/mentors">Mentors</a></li>
+                        <li><a href="/aboutus" class ="btn btn-dark">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="second">
+                    <ul>
+                        <li><a href="/login" class="btn btn-dark">Login</a></li>
+                        <li><button><a href="/register" class="btn btn-dark">Signup</a></button></li>
+                        
+                    </ul>
+                </div>
+            </nav>
+
+
+            <div class="mainPage">
+                <div class="main-one">
+                    <h1>Securing Customers from Cyber Threats and Guide them to a Safe Digital World</h1>
+                    <p>The platform aims to combat banking fraud through a user-friendly website incorporating real-time fraud detection, user education on scam prevention, and mechanisms for holding banks accountable. Key features include website link verification, fraud awareness training, and multi-aspect detection of suspicious activities. The project utilizes a range of technologies, including Artifical Intelligence and machine learning libraries, to achieve its goals.</p>
+                    <button><a>Join now</button>
+                </div>
+
+                <div class="main-two">
+
+                </div>
+            </div>
+
+
+            <div class="last">
+                <div class="last-one">
+                    <div class="line"></div>
+                    <div class="tech">
+                        <div class="one">
+                            <h2>Popular Features</h2>
+                        </div>
+                        <div class="two">
+                            <div class="box1">
+                                <button class="green first">ChatBot</button>
+                                <button class="blue second">Fraud Detection</button>
+                            </div>
+                            <br>
+                            <br>
+
+                            <div class="box3">
+                                <button class="blue four">Guidance</button>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="box3">
+                                <button class="green third">Secure</button>
+                                <button class="green five">Awareness</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="images">
+
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- {% endblock %} -->
+</body>
+</html>

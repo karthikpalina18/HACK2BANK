@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            color:#424242;
+        }
+
+        body {
+            
+            background-color: #2256C6;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            
+           
+        }
+
+        main {
+           
+            height:90vh;
+            width:90vw;
+            
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            margin-top:2.5rem;
+            
+
+        }
+
+        .container {
+            display:flex;
+            justify-content:center;
+            flex-direction:column;
+            align-items: center;
+            background: #F5F5F5;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius:8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height:100%;
+            width: 50%;
+            
+            
+        }
+        .container2 {
+            background-image: url("https://i.ibb.co/JvD6LFs/Leonardo-Phoenix-generate-a-vibrant-digital-illustration-for-a-2.jpg");
+            background-size:cover;
+            /* align-items: right;
+            padding: 100px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 2100%;
+            height:100vh;
+            max-width: 500px; */
+            height:100%;
+            width:50%;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group .errors {
+            color: red;
+            font-size: 0.875em;
+        }
+        .form-group .errors p {
+            margin: 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            color: #fff;
+            background-color: #333;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
+        .btn-secondary {
+            background-color: #666;
+        }
+        .btn-secondary:hover {
+            background-color: #888;
+        }
+        .alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+        }
+
+        .container .logo {
+            height:25%;
+            width:78%;
+            margin-bottom:1rem;
+            margin-top:-5rem;
+        }
+
+        .container .logo img {
+            height:100%;
+            width:100%;
+        }
+
+        .container h2 {
+            font-size:4rem;
+        }
+
+        .form-group label {
+            font-size:1.5rem;
+        }
+        
+
+        button {
+            height:2.5rem;
+            width:5rem;
+            border-radius:50px;
+            background-color:#424242;
+            border:none;
+            color:whitesmoke;
+            font-weight:500;
+            margin-left:4rem;
+        }
+
+        button a {
+            color:whitesmoke;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        button:hover {
+            background-color:#48CFCB;
+            color:whitesmoke;
+        }
+
+        /* .btn-one {
+            margin-left:-1rem;
+        } */
+    </style>
+</head>
+<body>
+   
+    <main>
+        <div class="container">
+            <div class="logo">
+                <img src="https://i.imghippo.com/files/PICE7791BEo.png"/>
+            </div>
+
+            <h2>Login</h2>
+    
+            <!-- Flash messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert">
+                    <ul>
+                        {% for category, message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% endwith %}
+    
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ form.hidden_tag() }}
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    {{ form.email(class="form-control") }}
+                    {% if form.email.errors %}
+                        <div class="errors">
+                            {% for error in form.email.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+    
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    {{ form.password(class="form-control") }}
+                    {% if form.password.errors %}
+                        <div class="errors">
+                            {% for error in form.password.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+    
+                <button class="btn-one" type="submit" >Login</button>
+                <button><a href="{{ url_for('register') }}">Register</a></button>
+            </form>
+        </div>
+        <div class="container2">
+          
+        </div>
+    </main>
+   
+</body>
+</html>

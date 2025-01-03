@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body{
+            color:black;
+            background-color: #6880ed;
+            display:flex;
+        }
+        #logo{
+            height: 4rem;
+            width: 10rem;
+            background-image: url("https://i.imghippo.com/files/PICE7791BEo.png");
+            background-size:cover;
+            flex-direction: column;
+            align-items: center;
+
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div id ="logo"></div>
+        <div>
+        <h1>Chatbot</h1>
+
+        <div id="chat-box">
+            <div class="chat-message bot-message">Hello! Type "Hi" to start the conversation.</div>
+        </div>
+        <input id="user-input" type="text" placeholder="Type your message here...">
+        <button id="send-btn">Send</button>
+        <!-- <button id="back" class="/dashboard">back</button> -->
+        </div>
+    </div>
+    <script>
+        const sendBtn = document.getElementById('send-btn');
+        const userInput = document.getElementById('user-input');
+        const chatBox = document.getElementById('chat-box');
+
+        sendBtn.addEventListener('click', async () => {
+            const userMessage = userInput.value.trim();
+            if (!userMessage) return;
+
+            // Display user message
+            const userMsgDiv = document.createElement('div');
+            userMsgDiv.className = 'chat-message user-message';
+            userMsgDiv.textContent = userMessage;
+            chatBox.appendChild(userMsgDiv);
+
+            // Fetch chatbot response
+            const response = await fetch('/get_response', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_input: userMessage })
+            });
+            const data = await response.json();
+
+            // Display bot response
+            const botMsgDiv = document.createElement('div');
+            botMsgDiv.className = 'chat-message bot-message';
+            botMsgDiv.textContent = data.response;
+            chatBox.appendChild(botMsgDiv);
+
+            // Display options
+            if (data.options.length > 0) {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'chat-options';
+                data.options.forEach(option => {
+                    const optionBtn = document.createElement('button');
+                    optionBtn.textContent = option;
+                    optionBtn.addEventListener('click', () => {
+                        userInput.value = option;
+                        sendBtn.click();
+                    });
+                    optionsDiv.appendChild(optionBtn);
+                });
+                chatBox.appendChild(optionsDiv);
+            }
+
+            userInput.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        });
+    </script>
+</body>
+</html>

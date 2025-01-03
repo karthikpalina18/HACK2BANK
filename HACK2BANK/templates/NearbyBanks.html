@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Banks Locator</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #map {
+            height: 500px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2256c6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ec6928;
+        }
+        button:active {
+            background-color: #333;
+        }
+        #logo{
+            margin-left:35.5%;
+            height: 7rem;
+            width: 25rem;
+            background-image: url("https://i.imghippo.com/files/PICE7791BEo.png");
+            background-size:cover;
+            display:flex;
+            justify-items: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="logo">
+
+    </div>
+    <div class="container">
+    
+        <h1>Nearby Banks Locator</h1>
+        <p>Click the button below to find nearby banks and view them on the map.</p>
+        <button id="findBanksBtn">Find Nearby Banks</button>
+        <div id="map" style="display:none;"></div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.getElementById("findBanksBtn").addEventListener("click", () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    const mapDiv = document.getElementById("map");
+                    mapDiv.style.display = "block";
+
+                    // Initialize the map
+                    const map = L.map("map").setView([latitude, longitude], 13);
+
+                    // Add OpenStreetMap tiles
+                    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                        maxZoom: 19,
+                    }).addTo(map);
+
+                    // Add a marker for the user's location
+                    L.marker([latitude, longitude]).addTo(map).bindPopup("You are here").openPopup();
+
+                    // Add a circle with a 10 km radius
+                    const circle = L.circle([latitude, longitude], {
+                        radius: 10000, // Radius in meters
+                        color: "blue",
+                        fillColor: "#007bff",
+                        fillOpacity: 0.2
+                    }).addTo(map);
+
+                    // Fetch nearby banks
+                    fetch("/find_banks", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ latitude, longitude })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(bank => {
+                            const bankLat = bank.Latitude;
+                            const bankLon = bank.Longitude;
+
+                            // Add a marker for each bank
+                            L.marker([bankLat, bankLon])
+                                .addTo(map)
+                                .bindPopup(
+                                    `<strong>${bank["Bank Name"]}</strong><br>${bank["Distance (km)"].toFixed(2)} km away`
+                                );
+                        });
+                    })
+                    .catch(error => {
+                        alert("An error occurred: " + error.message);
+                    });
+                }, error => {
+                    alert("Geolocation failed: " + error.message);
+                });
+            } else {
+                alert("Geolocation is not supported by your browser.");
+            }
+        });
+    </script>
+</body>
+</html>

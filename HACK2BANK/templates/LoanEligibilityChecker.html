@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Eligibility Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction: column;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #loanEligibilityResult {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        #logo{
+            /* margin-left:36%; */
+            height: 7rem;
+            width: 25rem;
+            background-image: url("https://i.imghippo.com/files/PICE7791BEo.png");
+            background-size:cover;
+            display:flex;
+            flex-direction:column;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id ="logo"></div>
+
+    <div class="container">
+        <h1>Loan Eligibility Checker</h1>
+        <p>Check if you're eligible for a loan by providing your details.</p>
+        
+        <form id="loanEligibilityForm">
+            <label for="income">Monthly Income (INR): </label>
+            <input type="number" id="income" placeholder="Enter income" required><br>
+            
+            <label for="creditScore">Credit Score: </label>
+            <input type="number" id="creditScore" placeholder="Enter credit score" required><br>
+            
+            <label for="existingLoans">Existing Loans (INR): </label>
+            <input type="number" id="existingLoans" placeholder="Enter amount of existing loans" required><br>
+            
+            <button type="submit">Check Eligibility</button>
+        </form>
+
+        <div id="loanEligibilityResult"></div>
+    </div>
+
+    <script>
+        document.getElementById('loanEligibilityForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const income = parseFloat(document.getElementById('income').value);
+            const creditScore = parseInt(document.getElementById('creditScore').value);
+            const existingLoans = parseFloat(document.getElementById('existingLoans').value);
+
+            const loanEligibilityMessage = checkLoanEligibility(income, creditScore, existingLoans);
+
+            // Display the eligibility result
+            document.getElementById('loanEligibilityResult').innerHTML = loanEligibilityMessage;
+        });
+
+        function checkLoanEligibility(income, creditScore, existingLoans) {
+            // Criteria for loan eligibility (this can be adjusted based on your requirements)
+            const minimumIncome = 3000; // Minimum monthly income required
+            const minimumCreditScore = 650; // Minimum credit score required
+            const maxExistingLoans = 50000; // Maximum allowed existing loans for eligibility
+
+            // Eligibility check logic
+            if (income >= minimumIncome && creditScore >= minimumCreditScore && existingLoans <= maxExistingLoans) {
+                return "🎉 Congratulations! You are eligible for a loan.";
+            } else if (income < minimumIncome) {
+                return "❌ Sorry, your income is below the required threshold for loan eligibility.";
+            } else if (creditScore < minimumCreditScore) {
+                return "❌ Sorry, your credit score is below the minimum requirement for loan eligibility.";
+            } else if (existingLoans > maxExistingLoans) {
+                return "❌ Sorry, the amount of existing loans you have exceeds the allowed limit for loan eligibility.";
+            } else {
+                return "❌ Sorry, you do not meet the eligibility criteria for a loan.";
+            }
+        }
+    </script>
+
+</body>
+</html>

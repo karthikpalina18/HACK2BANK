@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe-to-Invest Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result p {
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #result p.valid {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+
+        #result p.invalid {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
+        #result p.error {
+            color: #856404;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+        }
+        #logo{
+            margin-left:36%;
+            height: 7rem;
+            width: 25rem;
+            background-image: url("https://i.imghippo.com/files/PICE7791BEo.png");
+            background-size:cover;
+            display:flex;
+            justify-items: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="logo"></div>
+
+    <div class="container">
+        <h1>Safe-to-Invest Checker</h1>
+        <p>Enter the name of an investment entity to verify its legitimacy.</p>
+        
+        <!-- Form for submitting entity name -->
+        <form method="POST" action="/IChecker">
+            <input type="text" name="entityName" id="entityName" placeholder="Enter entity name" required>
+            <button type="submit">Check Legitimacy</button>
+        </form>
+
+        <!-- Display result -->
+        {% if result %}
+            <div id="result">
+                <p class="{{ result.class }}">{{ result.message }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
